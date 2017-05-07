@@ -4,7 +4,7 @@ module BasicView
   def basic_view(view)
     return nil if view.size > 7
     builder
-    character_swap(view)
+    swap(view)
     printer
   end
 
@@ -15,7 +15,8 @@ module BasicView
     end
   end
 
-  def character_swap(view)
+  # Gross, I know
+  def swap(view)
     coordinates = [[0, 19], [1, 8], [2, 2], [2, 14], [1, 30], [2, 24], [2, 36]]
     view.each.with_index do |x, index|
       @visual[coordinates[index][0]][coordinates[index][1]] = x

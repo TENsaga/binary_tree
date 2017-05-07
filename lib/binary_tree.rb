@@ -1,14 +1,16 @@
-require './merge_sort'
-require './basic_view'
+require './lib/binary_tree/merge_sort'
+require './lib/binary_tree/basic_view'
+require './lib/binary_tree/node'
 require 'pry'
 
-class Tree
+class BinaryTree
   include MergeSort
   include BasicView
   attr_reader :view
 
   def initialize(data)
     @view = []
+    Node.reset
     build_tree(merge_sort(data))
   end
 
@@ -33,31 +35,3 @@ class Tree
     (data.size / 2).round
   end
 end
-
-class Node
-  @count = 0
-  @instances = []
-
-  class << self
-    attr_accessor :count, :instances
-  end
-
-  def initialize(value, parent, l_child, r_child)
-    @value = value
-    @parent = parent
-    @l_child = l_child
-    @r_child = r_child
-    self.class.count += 1
-    self.class.instances << self
-  end
-
-  def self.all
-    @instances.each { |x| p x }
-    nil
-  end
-end
-
-# t = Tree.new([2, 6, 8, 9, 12, 15, 32, 41, 43, 44, 48, 51, 52, 55, 60].shuffle)
-# t = Tree.new([2, 6, 8, 9, 12, 15, 32].shuffle)
-t = Tree.new([9, 2, 8, 1, 0, 5, 4].shuffle)
-t.basic_view(t.view)
