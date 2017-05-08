@@ -1,25 +1,41 @@
 # Binary Tree
+Author: TENsaga - Aspen Swanson 2017
 
-Binary Tree creation and traversal
+# Description
+Binary Tree creation and traversal, utilizing the merge sort algorithm, and BFS/DFS for searching.
+
+## Visual Represenation
+BinaryTree.new([12, 8, 32, 2, 6, 9, 15].shuffle)
+
+                    9
+          6                    15
+    2           8        12          32
 
 ## Installation
-
 Download repo
 
 ## Usage
-
 cd binary_tree
 
 - Start IRB
 bin/console
 
 - Create Tree: any size, ordered or unordered, with odd or even number of nodes
-BinaryTree.new([2, 6, 8, 9, 12, 15, 32, 41, 43, 44, 48, 51, 52, 55, 60].shuffle)
-BinaryTree.new([5, 1, 2, 4, 12, 42].shuffle)
+
+        tree = Tree.new([2, 6, 8, 9, 12, 15, 32, 41, 43, 44, 48, 51, 52, 55, 60].shuffle)
+
+        tree = Tree.new([5, 1, 2, 4, 12, 42].shuffle)
 
 - View Node instances, values, parents, and children
-Node.all
 
-- Hard coded print available only for testing 3 level trees with < 7 nodes
-tree = BinaryTree.new([2, 6, 8, 9, 12, 15, 32].shuffle)
-tree.basic_view(tree.view)
+        tree.all
+
+##### Use Breadth First and Depth First searching to retreive node object at given value. Depending on where the node is in the tree, one search may find it faster by hitting less nodes on the way. The program will print each node hop.
+
+- Breadth-first search (BFS): Starts at the tree root, gathering values based on level before moving onto next level of tree
+
+        tree.bfs(5)
+
+- Depth-first search (DFS): Starts at the root, explores as far as possible along each LEFT branch, before backtracking to complete RIGHT branch.
+
+        tree.dfs(12)

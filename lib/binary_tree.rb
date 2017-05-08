@@ -1,15 +1,15 @@
-require './lib/binary_tree/merge_sort'
-require './lib/binary_tree/basic_view'
-require './lib/binary_tree/node'
+require_relative './binary_tree/merge_sort'
+require_relative './binary_tree/node'
+
 require 'pry'
 
-class BinaryTree
+class Tree
   include MergeSort
-  include BasicView
-  attr_reader :view
+
+  attr_accessor :depth_first
 
   def initialize(data)
-    @view = []
+    @depth_first = []
     Node.reset
     build_tree(merge_sort(data))
   end
@@ -19,7 +19,7 @@ class BinaryTree
     return if data.size.zero?
     center = half(data)
     value = data[center]
-    @view << value
+    @depth_first << value
 
     # Recusion to split halves until zero then execute logic
     build_tree(l_half = data[0...center], value)
@@ -33,5 +33,17 @@ class BinaryTree
 
   def half(data)
     (data.size / 2).round
+  end
+
+  def bfs(value)
+    Node.bfs(value)
+  end
+
+  def dfs(value)
+    Node.dfs(value, @depth_first)
+  end
+
+  def all
+    Node.all
   end
 end
