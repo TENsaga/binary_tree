@@ -28,7 +28,7 @@ class Node
   end
 
   # Breadth First Search
-  # Set root node, then recusrive call with each new set of base nodes
+  # Utilizes node_order recusion to build order by level
   def self.bfs(value, base_nodes = [])
     base_nodes.push(@instances.select { |x| x.parent.nil? }).flatten!
     node_order(value, base_nodes)
@@ -37,21 +37,23 @@ class Node
   # Checks target value on each base node as seen, returns node if match
   def self.node_order(value, base_nodes, children = [])
     return if base_nodes.empty?
-    base_nodes.each do |x|
-      puts "Node: #{x.value}"
-      return x if value == x.value
-      children.push(x.l_child, x.r_child)
+    base_nodes.each do |node|
+      puts "Node: #{node.value}"
+      return node if node.value == value
+      children.push(node.l_child, node.r_child)
     end
-    base_nodes = @instances.select { |x| children.include?(x.value) }
+    base_nodes = @instances.select { |n| children.include?(n.value) }
+
+    # New base_nodes moving down the tree
     node_order(value, base_nodes)
   end
 
   # Depth First Search
-  # Utilizes depth_first BinaryTree variable that populates as tree inits
+  # Utilizes depth_first Tree variable that populates as tree inits
   def self.dfs(value, depth_first)
-    depth_first.each do |x|
-      puts "Node: #{x}"
-      node = @instances.find { |y| y if x == y.value }
+    depth_first.each do |val|
+      puts "Node: #{val}"
+      node = @instances.find { |n| n if val == n.value }
       return node if node.value == value
     end
     nil

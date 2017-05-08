@@ -1,11 +1,9 @@
 require_relative './binary_tree/merge_sort'
 require_relative './binary_tree/node'
-
 require 'pry'
 
 class Tree
   include MergeSort
-
   attr_accessor :depth_first
 
   def initialize(data)
@@ -14,7 +12,7 @@ class Tree
     build_tree(merge_sort(data))
   end
 
-  # Creates binary tree where each point is a node object
+  # Create binary tree where each node is a Node object
   def build_tree(data, parent = nil)
     return if data.size.zero?
     center = half(data)

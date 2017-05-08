@@ -5,7 +5,7 @@ Author: TENsaga - Aspen Swanson 2017
 Binary Tree creation and traversal, utilizing the merge sort algorithm, and BFS/DFS for searching.
 
 ## Visual Represenation
-BinaryTree.new([12, 8, 32, 2, 6, 9, 15].shuffle)
+Tree.new([12, 8, 32, 2, 6, 9, 15].shuffle)
 
                     9
           6                    15
